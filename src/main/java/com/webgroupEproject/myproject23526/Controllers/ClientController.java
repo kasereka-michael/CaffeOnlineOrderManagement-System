@@ -18,6 +18,7 @@ import com.webgroupEproject.myproject23526.Model.UserClient;
 import com.webgroupEproject.myproject23526.Services.ClientService;
 import com.webgroupEproject.myproject23526.Services.ProductService;
 import com.webgroupEproject.myproject23526.Services.CommentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -39,6 +40,7 @@ import java.util.stream.Collectors;
  */
 
 @Controller
+@RequiredArgsConstructor
 public class ClientController {
 
     @Autowired

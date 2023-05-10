@@ -3,8 +3,8 @@ package com.webgroupEproject.myproject23526.Model;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+
+import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;

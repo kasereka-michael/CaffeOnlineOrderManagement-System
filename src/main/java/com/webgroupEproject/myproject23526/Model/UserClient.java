@@ -3,10 +3,7 @@ package com.webgroupEproject.myproject23526.Model;
 
 import jakarta.persistence.*;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Date;
 
