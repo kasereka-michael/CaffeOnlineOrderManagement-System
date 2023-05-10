@@ -1,0 +1,133 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Apr 29, 2023, 8:37:37 AM
+    Author     : michael
+*/
+
+body {
+   margin: 0;
+   padding: 0;
+   font-family:'Jost', sans-serif;
+}
+.container{
+
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.clientorder{
+    margin: 20px 20px 20px 20px;
+    height: 100%;
+    border: 1px solid #A2A1AC;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+    border-radius: 10px;
+}
+.explain-order{
+    margin-top: 40px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.ProductRecord{
+    margin: 20px 20px 20px 20px;
+   border: 1px solid #A2A1AC;
+   border-radius: 10px;
+    height: 100%;
+
+
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+
+}
+.btn{
+    display: block;
+    width: 180px;
+    height: 50px;
+    color: #023;
+    font-size: 14px;
+    padding: 12px 0;
+    padding-bottom: 12px;
+    background: #fff;
+    border: 0;
+    border-radius: 20px;
+    border: 2px solid #000;
+    margin: 20px auto;
+    align-items: center;
+    font-weight: bold;
+}
+.btn:hover{
+     border: 2px solid #000;
+     background: #824E18;
+     color: #fff;
+}
+
+.all{
+
+  width: 65%;
+  padding:15px;
+  color: black;
+  font-size: 16px;
+  margin:0px 0px 0px 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  outline: none;
+
+}
+
+.popup {
+  /*display: none;*/
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content{
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: #999;
+  text-decoration: none;
+}
+
+.close-button:hover {
+  color: #555;
+}

@@ -1,0 +1,276 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Apr 25, 2023, 11:39:55 AM
+    Author     : michael
+*/
+/*table.wrapper {
+  width: 98%;
+  border-collapse: collapse;
+  margin: 10px;
+}
+
+*/table.wrapper thead th {
+  background-color: #824E18;
+  color: #fff;
+  font-weight: bold;
+  text-align: left;
+  padding: 10px;
+}/*
+
+table.wrapper tbody td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+table.wrapper tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table.wrapper tbody tr:hover {
+  background-color: #ddd;
+}
+
+table.wrapper tbody td a {
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+*/table.wrapper tbody td a:hover {
+  text-decoration: underline;
+}/*
+
+
+*/  table.wrapper thead {
+    display: none;
+
+  }/*
+
+*/
+
+
+/*table.wrapper tbody td:before {
+    content: attr(data-title);
+    font-weight: bold;
+    display: inline-block;
+    width: 50%;
+    margin-left: -50%;
+    text-align: left;
+  }
+  */
+
+  /*
+
+  table.wrapper tbody td {
+    display: block;
+    text-align: center;
+    border: none;
+  }
+
+  table.wrapper tbody tr {
+    margin-bottom: 10px;
+  }
+
+  table.wrapper tbody tr:nth-child(even) {
+    background-color: #fff;
+  }
+}
+*/
+/*table.cinereousTable {
+  border: 2px solid #948473;
+  background-color: #FFE3C6;
+  width: 100%;
+  margin: 5px;
+  text-align: center;
+}*/
+
+table.redTable {
+  border: 0px solid #A40808;
+  background-color: #FFFFFF;
+  width: 100%;
+  /*height: 200%;*/
+  text-align: left;
+
+  font-weight: 500;
+  border-collapse: collapse;
+}
+table.redTable td, table.redTable th {
+  padding: 3px 5px;
+}
+table.redTable tbody td {
+  font-size: 12px;
+}
+table.redTable tr:nth-child(even) {
+  background: #A2A1AC;
+}
+table.redTable thead {
+  background: #FFFFFF;
+  border-bottom: 2px solid #444444;
+}
+table.redTable thead th {
+  font-size: 19px;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+  border-left: 5px solid #000000;
+}
+table.redTable thead th:first-child {
+  border-left: none;
+}
+
+table.redTable td {
+  white-space: nowrap;
+}
+
+
+.comment-box {
+  display: flex;
+  flex-direction: row;
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.profile-initial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #824E18;
+  margin-right: 10px;
+}
+
+.comment-body {
+  flex: 1;
+}
+
+.comment-body p {
+  margin: 0;
+  font-size: 14px;
+}
+@media screen and (max-width: 768px) {
+  table.wrapper {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+}
+.accessoir{
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+.edit{
+    background-color: #242e42;
+    color: #fff;
+    border-radius: 2px;
+}
+.delete{
+  background-color: #cc0000;
+  color: #fff;
+  border-radius: 2px;
+}
+a.edit:hover, a.delete:hover {
+  box-shadow: 0px 0px 5px 1px #ccc;
+}
+
+.all{
+  width: 40%;
+  padding:15px;
+  color: black;
+  font-size: 16px;
+  margin:0px 0px 0px 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  outline: none;
+
+}
+.btn{
+    display: block;
+    width: 180px;
+    height: 50px;
+    color: #023;
+    font-size: 14px;
+    padding: 12px 0;
+    padding-bottom: 12px;
+    background: #fff;
+    border: 0;
+    border-radius: 20px;
+    border: 2px solid #000;
+    margin: 20px auto;
+    align-items: center;
+    font-weight: bold;
+}
+.btn:hover{
+     border: 2px solid #000;
+     background: #824E18;
+     color: #fff;
+}
+.myButton {
+	box-shadow:inset -43px 1px 9px -24px #ffffff;
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	background-color:#f9f9f9;
+	border-radius:12px;
+    width: 100px;
+    margin-top: 10px;
+	border:3px solid #fffaff;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+    text-align: left;
+	font-family:Arial;
+	font-size:12px;
+	font-weight:bold;
+	padding:8px 26px;
+	text-decoration:none;
+	text-shadow:0px 1px 50px #ffffff;
+}
+.myButton:hover{
+    color: #fff;
+    background: linear-gradient(to bottom, #a0522d 5%, #8b4513 100%);
+    background-color: #a0522d;
+    box-shadow: inset -43px 1px 9px -24px #ffffff;
+
+
+
+}
+/* width and height of the scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* scrollbar track */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* Customize the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+    background-color: rgba(136, 136, 136, 0.2); /* Change this to your desired color and opacity */
+    border-radius: 10px; /* Change this to your desired border radius */
+}
+
+
+/* scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(130, 78, 24, 0.3);
+
+}
+
+

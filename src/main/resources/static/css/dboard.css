@@ -1,0 +1,392 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Apr 25, 2023, 10:12:51 AM
+    Author     : michael
+*/
+
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
+
+:root {
+  --page-header-bgColor: #000;
+  --page-header-bgColor-hover: #1d2636;
+  --page-header-txtColor: #dde9f8;
+  --page-header-headingColor: #7889a4;
+  --page-header-width: 220px;
+  --page-content-bgColor: #f0f1f6;
+  --page-content-txtColor: #171616;
+  --page-content-blockColor: #fff;
+  --white: #fff;
+  --black: #333;
+  --blue: #00b9eb;
+  --red: #ec1848;
+  --border-radius: 4px;
+  --box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.075);
+}
+
+/*
+Global Setup
+remove all dirty style
+*/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family:'Jost', sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  cursor: pointer;
+}
+
+button,
+input {
+  border: none;
+}
+
+svg {
+  display: block;
+  border-radius: 50%;
+   object-fit: contain;
+}
+h3{
+    text-align: center;
+    font-size: 30px;
+    color:#fff;
+}
+.administration{
+    object-fit: contain;
+}
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo{
+    border-radius: 50%;
+
+}
+body {
+  font: 16px/1.5 "Lato", sans-serif;
+}
+
+
+/* HEADER STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page-header {
+  position: fixed;
+  top:0;
+  left: 0;
+  bottom: 0;
+  padding-top: 20px;
+  width: var(--page-header-width);
+  background: var(--page-header-bgColor);
+}
+
+/*In case you prefer an absolutely positioned header that covers the full page height, add these styles*/
+/*body {
+  position: relative;
+}
+
+.page-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}*/
+
+/*remove these styles*/
+/*.page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+}*/
+
+
+.page-header .logo {
+  margin: 0 15px;
+}
+
+
+
+/* PAGE CONTENT STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page-content {
+  position: relative;
+  left: var(--page-header-width);
+  width: calc(100% - var(--page-header-width));
+  padding: 30px;
+  color: var(--page-content-txtColor);
+  background: var(--page-content-bgColor);
+}
+
+.search-and-user {
+  display: grid;
+  grid-template-columns: 1fr auto; /*STudy*/
+  background: var(--page-content-bgColor);
+  margin-bottom: 10px;
+}
+
+.search-and-user form { /*Sinon loupe apparait pas */
+  position: relative;
+}
+
+.search-and-user input[type="search"] {
+  width: 100%; /*sinon prend pas la loupe*/
+  height: 50px;
+  font-size: 1.5rem;
+  padding-left: 15px;
+  background: var(--page-content-blockColor);
+  color: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.search-and-user ::placeholder { /*couleur du place holder*/
+  color: var(--page-content-txtColor);
+}
+
+.search-and-user form svg { /*la loupe*/
+  width: 26px;
+  height: 26px;
+  fill: var(--page-content-txtColor);
+}
+
+.search-and-user form button { /*position de la loupe*/
+  position: absolute;
+  top: 25%;
+  right: 15px;
+}
+
+.search-and-user .admin-profile {
+  display: flex;
+  align-items: center; /*centrage vertical*/
+}
+
+.search-and-user .admin-profile .greeting {
+  margin: 0 10px 0 20px;
+}
+
+.search-and-user .admin-profile svg {
+  width: 30px;
+  height: 30px;
+}
+
+ .notifications {
+  position: relative;
+}
+
+ .badge {
+  display: flex;
+  align-items: center;
+  justify-content: center; /*centrage horizontal*/
+  position: absolute;
+  top: -10px;
+  right: -3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 10px;
+  color: var(--white);
+  background: var(--red);
+}
+
+
+.page-content .grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.page-content .grid > div {
+  display: flex;
+  height: 300px;
+  background: var(--page-content-blockColor);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.page-content .grid > div:first-child,
+.page-content .grid > div:last-child {
+  grid-column: 1 / -1;
+}
+
+.tableview{
+    height: 100%;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+}
+.tabletitle{
+    text-align: left;
+    margin-left: 10px;;
+    margin-right: 1px;;
+    font-weight: bold;
+    font-size: 20px;
+}
+.chart{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    flex-direction: column;
+
+
+}
+h6{
+    margin: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+#piechart{
+   padding-bottom: 50px;
+
+}
+.commentor{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height:500px;
+    flex-direction: column;
+    height: auto;
+    padding: 10px 0 10px 10px;
+    margin: 2px;
+    text-align: left;
+}
+
+.commenatire{
+    width: 98%;
+    height: 90%;
+    border: 3px solid #824E18;
+    border-radius: 10px;
+    overflow: scroll;
+
+}
+
+/* MQ RULES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+@media screen and (max-width: 767px) {
+  .page-header,
+  .page-content {
+    position: static;
+    width: 100%;
+  }
+
+  .page-header {
+    padding: 10px;
+  }
+
+  .page-header .logo {
+    margin: 0;
+    height: 35px;
+  }
+
+
+  .greeting {
+    display: none;
+  }
+
+  .page-content {
+    padding: 10px;
+  }
+
+  .search-and-user {
+    position: absolute;
+    left: 131px;
+    top: 10px;
+    padding: 0;
+    grid-column-gap: 5px;
+    width: calc(100% - 141px);
+    border-radius: var(--border-radius);
+    background: transparent;
+  }
+
+  .search-and-user input[type="search"] {
+    font-size: 1rem;
+    height: 35px;
+  }
+
+  .search-and-user form svg {
+    width: 18px;
+    height: 18px;
+  }
+  .search-and-user .admin-profile svg {
+    fill: var(--white);
+  }
+}
+
+.date{
+    display: block;
+    font-size: 10px;
+    background-color: #bac6d9;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 200;
+    margin-top: 15px;
+}
+@media screen and (max-width: 700px) {
+ .grid > article {
+    grid-column: 1 / -1; /* un par un*/
+  }
+}
+/**
+MINI SCREEN
+**/
+@media screen and (max-width: 400px) {
+  .page-content .grid > article {
+    grid-column: 1 / -1; /* un par un*/
+  }
+}
+
+.export{
+    display: block;
+    text-align: right;
+    margin-right: 20px;
+}
+.export:hover{
+    color:cornflowerblue;
+}
+.forudatedelet{
+     display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    flex-direction: row;
+}
+
+/* scrollbar track */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* Customize the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+    background-color: rgba(136, 136, 136, 0.2); /* Change this to your desired color and opacity */
+    border-radius: 10px; /* Change this to your desired border radius */
+}
+
+
+/* scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(130, 78, 24, 0.3);
+
+}

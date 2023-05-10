@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SEarch Result</title>
+    <style>
+
+/* Position the search results */
+#search-results {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: none;
+  /* Other styles */
+
+
+
+}
+
+
+
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th, td {
+			text-align: left;
+			padding: 8px;
+			border-bottom: 1px solid #ddd;
+		}
+
+		tr:hover {
+			background-color:#f5f5f5;
+		}
+	</style>
+
+</head>
+<body>
+<h1 sytle="text-align: center;" th:text="${search}"></h1>
+
+<div th:if="${not #lists.isEmpty(products)}">
+    <table>
+        <thead>
+        <tr>
+            <th>Name of the Product</th>
+            <th>Description of the product</th>
+            <th>Quantity in the stock</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.prodname}"></td>
+            <td th:text="${product.prodcomment}"></td>
+            <td th:text="${product.prodquantity}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:if="${#lists.isEmpty(products)}">
+    <p>No products found.</p>
+</div>
+        <form th:action="@{/backhome}"method="get" >
+              <input type="submit" value="back home" th:style="'display: ${bkh}; border: none;  color: #0066ff;'"/>
+        </form>
+    </body>
+</html>

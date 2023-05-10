@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:form="http://www.springframework.org/tags/form">
+<head>
+    <link rel="stylesheet" th:href="@{/css/productss.css}" >
+
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}" />
+    <meta charset="ISO-8859-1">
+    <title>Coffee system</title>
+
+
+</head>
+<body>
+
+
+<div class="container">
+  <div class="clientorder" th:style="'display: ' + ${displayclient} + ';'">
+    <div class="order-titre">
+      <h2 class="order" style="text-align: center;">ORDER</h2>
+    </div>
+    <form action="#" th:action="@{ordersubmission}" th:object="${client}" method="POST">
+      <div class="explain-order Order">
+        <h2 class="input-title" style="font-size: 15px; color:#824E18; margin-top: 20px;">please fill out all the fields accordingly</h2>
+        <input type="text" th:field="*{fullname}" class="all" placeholder="Full-name" required="true"/><br>
+        <input type="email" th:field="*{email}" class="all" placeholder="Email" required="true"/><br>
+        <input type="text" th:field="*{phonenumber}" class="all" onblur="validatePhoneNumber()" oninput="validateInput(this)" id="inputField" placeholder="Phone number"required/><br>
+        <span id="errorSpan" style="color: red;"></span>
+        <input type="text" th:field="*{address}" class="all" placeholder="Address Country/town/..." required="true"/><br>
+        <input type="text" th:field="*{companyname}" class="all" placeholder="Your Campany name" required="true"/><br>
+        <textarea th:field="*{explain_order}" class="all" placeholder="Explain the order..." id="myTextarea" required="true"></textarea>
+      </div>
+      <input type="submit" name="action" value="Order Coffee" class="btn">
+    </form>
+  </div>
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <!--<a  href="#" class="close-button" style="font-weight: bold; font-size:30px"  style="display: ${empty comment ? 'none' : 'block'}" onclick="hidePopup()">×</a>-->
+      <a id="close-button" href="#" class="close-button" style="font-weight: bold; font-size:30px" onclick="hidePopup()">×</a>
+
+<!--      <p id="feedback-text" style="display: ${empty comment ? 'none' : 'block'}">${comment}</p>-->
+      <p id="feedback-text" th:if="${not #strings.isEmpty(comment)}" th:text="${comment?.toString()}" style="display: block;"></p>
+
+    </div>
+  </div>
+
+  <div class="ProductRecord" th:style="'display:' + ${displayProduct} + ';'">
+
+    <form th:action="${url}" th:object="${Product}" method="POST">
+
+      <div class="explain-order" id="Order">
+        <h2 class="input-title" th:style="'color: #824E18; margin-top: 20px;'" th:text="${head}"></h2>
+        <input type="hidden" th:field="*{id}"/>
+
+        <input type="text" th:field="*{prodname}" name="fn" class="all" placeholder="product name"required/><br>
+
+        <input type="text" th:field="*{prodquantity}" name="ln" class="all" placeholder="Products quantity"required/><br>
+
+        <input type="date" th:field="*{recdate}" name="address" class="all" placeholder="Registration date"  pattern="yyyy-MM-dd" required/><br>
+
+        <label for="availability">Select product status:</label>
+        <select id="availability" th:field="*{currentStatus}" name="mn" class="all">
+          <option value="available">Available</option>
+          <option value="not-available">Not Available</option>
+        </select><br>
+
+        <textarea th:field="*{prodcomment}" name="ln" class="all" placeholder="Comment Product..." id="mTextarea" required></textarea>
+
+      </div>
+
+
+      <div class="button">
+        <div id="button" th:if="${action == null}">
+          <input type="submit" name="action" value="Submit" class="btn">
+        </div>
+        <div id="butto" th:if="${action != null}">
+          <input type="submit" name="action" th:value="${action}" class="btn">
+        </div>
+      </div>
+    </form>
+  </div>
+  </div>
+    <div th:style="'float: left; display: ${bkh};'">
+        <form th:action="@{/backhome}"method="get" >
+          <input type="submit" value="back home" th:style="'display: ${bkh}; border: none;  color: #0066ff;'"/>
+        </form>
+    </div>
+    <div th:style="'float: right; display: ${bkd};'">
+    <form th:action="@{/backdashboard}" method="get">
+      <input type="submit" value="back to dashboard" th:style="'display: ${bkd}; border: none; float: right; color: #0066ff; margin:0; '"/>
+    </form>
+    </div>
+<script>
+        function showPopup(message) {
+        var popup = document.getElementById("popup");
+        var feedbackText = document.getElementById("feedback-text");
+        feedbackText.innerHTML = message;
+
+        // Show the popup
+          popup.style.display = "block";
+
+        // Set the display property of the close button
+          var closeButton = document.getElementById("close-button");
+          closeButton.style.display = comment ? "block" : "none";
+        }
+
+
+        // Hide the popup
+              function hidePopup() {
+              var popup = document.getElementById("popup");
+              popup.style.display = "none";
+      }
+
+
+      function validatePhoneNumber() {
+    // Get the selected country code and phone number value
+    var countryCode = document.getElementById("country-code").value;
+    var phoneNumber = document.getElementsByName("phone")[0].value;
+
+    // Create a PhoneNumber object using the libphonenumber library
+    var phoneNumberUtil = i18n.phonenumbers.PhoneNumberUtil.getInstance();
+    var phoneNumberObj = phoneNumberUtil.parse(phoneNumber, countryCode);
+
+    // Check if the number is valid
+    var isValidNumber = phoneNumberUtil.isValidNumber(phoneNumberObj);
+
+    if (isValidNumber) {
+        // The number is valid
+        console.log("Valid phone number");
+    } else {
+        // The number is not valid
+        console.log("Invalid phone number");
+    }
+}
+
+function validateInput(inputField) {
+  // Get the input value and remove any non-numeric characters
+  let inputValue = inputField.value.replace(/\D/g, '');
+
+  // Limit the input to 10 digits
+  if (inputValue.length > 10) {
+    inputValue = inputValue.slice(0, 10);
+  }
+
+  // Update the input field value
+  inputField.value = inputValue;
+
+  // Check if the input value is valid
+  if (inputValue.length < 10) {
+    document.getElementById('errorSpan').innerHTML = 'Input must be 9 digits';
+  } else {
+    document.getElementById('errorSpan').innerHTML = '';
+  }
+}
+
+
+  document.getElementById('photo').addEventListener('change', function() {
+    var file = this.files[0];
+    if (file && file.size > 10 * 1024 * 1024) {
+      document.getElementById('photo-error').textContent = 'The photo must be under 10MB.';
+      this.value = null;
+    } else {
+      document.getElementById('photo-error').textContent = '';
+    }
+  });
+
+</script>
+</body>
+</html>

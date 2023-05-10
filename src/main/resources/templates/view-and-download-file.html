@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>file</title>
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+</head>
+<body>
+<div class="row dorder rounded">
+    <th:block th:if="${listoffile.empty}">
+        <div class="col">
+            <p>No available photo.</p>
+        </div>
+    </th:block>
+    <div class="container">
+        <div class="row">
+            <th:block th:each="doc : ${listoffile}">
+                <div class="col" th:if="${doc != null}">
+                    <!-- File icon -->
+                    <div>
+                        <i class="bi bi-file-earmark-fill" style="font-size: 10em;"></i>
+
+                    </div>
+                    <!-- File name and download link -->
+                    <div>
+                        <a th:href="@{'/download?id=' + ${doc.id}}" th:text="${doc.name}">file</a>
+                    </div>
+                    <!-- File size -->
+                    <div>
+                        <span class="badge bg-secondary">File size:</span>
+                        <div th:text="${doc.size}"> bytes</div>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</div>
+
+<form th:action="@{/backhome}"method="get" >
+    <input type="submit" value="back home" th:style="'display: ${bkh}; border: none;  color: #0066ff;'"/>
+</form>
+    <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

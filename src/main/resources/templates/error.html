@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error Page</title>
+</head>
+<body>
+<h1>Error</h1>
+<p th:text="${errorMessage}"></p>
+<form th:action="@{/backhome}"method="get" >
+    <input type="submit" value="back home" th:style="'display: ${bkh}; border: none;  color: #0066ff;'"/>
+</form>
+</body>
+</html>

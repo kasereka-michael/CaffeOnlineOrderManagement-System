@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Login Page And Sign Up</title>
+        <meta charset="ISO-8859-1">
+        <link type="text/css" rel="stylesheet" th:href="@{/css/logingandsignup.css}"/>
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+            <style>
+                .error{
+                    color:red;
+                    margin-left: 58px;
+                }
+                .message{
+                    text-align: center;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="main">
+                <input type="checkbox" id="chk" aria-hidden="true">
+                <div class="signup">
+                    <form th:action="@{/sign}" th:object="${signup}" method="post">
+                        <label for="chk" aria-hidden="true" class="sig">Sign up</label>
+                        <p class="message" th:text="${feedback}"></p>
+                        <input type="text" th:field="*{fullname}" class="input-field un" placeholder="User name"required/>
+                        <span class="error" th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}"></span>
+
+                        <input type="email" th:field="*{email}" class="input-field two" id="email"  placeholder="email"required/>
+                        <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+
+                        <input type="Password" th:field="*{password}" name="password" class="input-field three" id="confirmPassword" placeholder="Confirm Password"required/>
+                        <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                        <button type="submit">Sign up</button>
+                    </form>
+                </div>
+
+                <div class="login">
+                    <form action="log" th:action="@{/log}" th:object="${logging}" method="post">
+                        <label for="chk" aria-hidden="true">Login</label>
+                        <input type="email" th:field="*{email}"  name="email" class="input-field four" placeholder="User Name" required/>
+                        <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                        <input type="Password" th:field="*{password}"  name="password" class="input-field five" placeholder="Password"required/>
+                        <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                        <button type="submit">login</button>
+                        <a href="#">forgot Password</a>
+                    </form>
+                </div>
+            </div>
+        </body>
+    </html>
