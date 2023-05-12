@@ -165,7 +165,8 @@
             <button type="submit" class="myButton">Add Product</button>
           </form>
           <form method="post" th:object="${image}" th:action="@{upload}" enctype="multipart/form-data" onsubmit="return validateSize()">
-            <input type="file" id="image" name="document" required>
+            <input type="file" id="image" name="document"  accept="image/*" required>
+
             <button type="submit" style="background-color: #000; color: #fff;">save image</button>
           </form>
         </div>
@@ -313,10 +314,11 @@ function drawChart() {
 function validateSize() {
     var file = document.getElementById('image').files[0];
     var fileSize = file.size;
-    var maxSize = 10485760; // maximum file size in bytes (10MB)
+    var maxSize = 1073741824; // maximum file size in bytes (1GB)
+
 
     if (fileSize > maxSize) {
-        alert('File size exceeds the maximum allowed size of 10MB');
+        alert('File size exceeds the maximum allowed size of 1GB');
         return false;
     }
 

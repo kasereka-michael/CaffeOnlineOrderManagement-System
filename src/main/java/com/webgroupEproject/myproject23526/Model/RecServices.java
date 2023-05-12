@@ -19,16 +19,17 @@ public class RecServices implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotBlank(message = "required")
+    @NotNull(message = "required")
     private String prodname;
-    @NotBlank(message = "required")
+    @NotNull(message = "required")
     private String prodquantity;
-    @NotBlank(message = "required")
+    @NotNull(message = "required")
     private String prodcomment;
-    @NotBlank(message = "required")
+    @NotNull(message = "required")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date recdate;
-    @NotBlank(message = "required")
+
+    @NotNull(message = "required")
     private String currentStatus;
 
     public RecServices() {

@@ -13,13 +13,13 @@ public class UserClient implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = "Full name is required")
+    @NotNull(message = "required")
     private String fullname;
 
-    @NotBlank(message = "required")
+    @NotNull(message = "required")
     private String companyname;
 
-    @NotBlank(message = "Email is required")
+    @NotNull(message = "required")
     @Email(message = "Invalid email format")
     private String email;
 
@@ -31,7 +31,7 @@ public class UserClient implements Serializable {
     @NotNull(message = "Phone number is required")
     @Size(min = 10, max = 10, message = "Phone number should be 10 digits")
     private String phonenumber;
-    @NotBlank(message = "required")
+    @NotNull(message = "required")
     private Date date;
 
     public UserClient() {

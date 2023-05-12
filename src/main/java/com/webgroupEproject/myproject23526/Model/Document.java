@@ -15,6 +15,7 @@ public class Document {
 
     private Date uplaodtime;
     @Lob
+    @Column(name = "content", columnDefinition="LONGBLOB")
     private byte[] content;
 
     public Document() {

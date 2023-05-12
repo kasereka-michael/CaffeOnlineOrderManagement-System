@@ -27,15 +27,25 @@
         <span id="errorSpan" style="color: red;"></span>
         <input type="text" th:field="*{address}" class="all" placeholder="Address Country/town/..." required="true"/><br>
         <input type="text" th:field="*{companyname}" class="all" placeholder="Your Campany name" required="true"/><br>
-        <textarea th:field="*{explain_order}" class="all" placeholder="Explain the order..." id="myTextarea" required="true"></textarea>
+        <textarea th:field="*{explain_order}" class="all" placeholder="Explain the order... \n the quantity in kilogramme" id="myTextarea" required="true"></textarea>
+
       </div>
       <input type="submit" name="action" value="Order Coffee" class="btn">
+
+
+
+
     </form>
+    <div th:style="'display: block;'">
+      <form th:action="@{/backhome}"method="get" >
+        <input type="submit" value="back home" th:style="'display: ${bkh}; border: none;  color: #0066ff;'"/>
+      </form>
+    </div>
   </div>
   <div id="popup" class="popup">
     <div class="popup-content">
       <!--<a  href="#" class="close-button" style="font-weight: bold; font-size:30px"  style="display: ${empty comment ? 'none' : 'block'}" onclick="hidePopup()">×</a>-->
-      <a id="close-button" href="#" class="close-button" style="font-weight: bold; font-size:30px" onclick="hidePopup()">×</a>
+      <a id="close-button" href="#" class="close-button" style="font-weight: bold; font-size:30px" onclick="hidePopup()">X</a>
 
 <!--      <p id="feedback-text" style="display: ${empty comment ? 'none' : 'block'}">${comment}</p>-->
       <p id="feedback-text" th:if="${not #strings.isEmpty(comment)}" th:text="${comment?.toString()}" style="display: block;"></p>
@@ -53,7 +63,7 @@
 
         <input type="text" th:field="*{prodname}" name="fn" class="all" placeholder="product name"required/><br>
 
-        <input type="text" th:field="*{prodquantity}" name="ln" class="all" placeholder="Products quantity"required/><br>
+        <input type="text" th:field="*{prodquantity}" name="ln" class="all" placeholder="Products quantity available in kilogramme"required/><br>
 
         <input type="date" th:field="*{recdate}" name="address" class="all" placeholder="Registration date"  pattern="yyyy-MM-dd" required/><br>
 
@@ -76,19 +86,22 @@
           <input type="submit" name="action" th:value="${action}" class="btn">
         </div>
       </div>
+
+
+
+
     </form>
+
+
+    <div th:style="'display: ${bkd};'">
+      <form th:action="@{/backdashboard}" method="get">
+        <input type="submit" value="back to dashboard" th:style="'display: ${bkd}; border: none; float: right; color: #0066ff; margin:0; '"/>
+      </form>
+    </div>
   </div>
   </div>
-    <div th:style="'float: left; display: ${bkh};'">
-        <form th:action="@{/backhome}"method="get" >
-          <input type="submit" value="back home" th:style="'display: ${bkh}; border: none;  color: #0066ff;'"/>
-        </form>
-    </div>
-    <div th:style="'float: right; display: ${bkd};'">
-    <form th:action="@{/backdashboard}" method="get">
-      <input type="submit" value="back to dashboard" th:style="'display: ${bkd}; border: none; float: right; color: #0066ff; margin:0; '"/>
-    </form>
-    </div>
+
+
 <script>
         function showPopup(message) {
         var popup = document.getElementById("popup");
