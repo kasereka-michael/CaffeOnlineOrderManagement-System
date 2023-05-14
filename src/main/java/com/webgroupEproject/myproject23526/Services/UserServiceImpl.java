@@ -34,11 +34,10 @@ public class UserServiceImpl implements UserService{
         user.setEmail(userDto.getEmail());
         // encrypt the password using spring security
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        Random random = new Random();
-        String[] all = {"ROLE_ADMIN","ROLE_USER"};
-        int randomIndex = random.nextInt(all.length);
-        String roleName = all[randomIndex];
-        Role role = roleRepository.findByName(roleName);
+//        Random random = new Random();
+//        String[] all = {"ROLE_ADMIN","ROLE_USER"};
+
+        Role role = roleRepository.findByName("ROLE_USER");
         if(role == null){
             role = checkRoleExist();
         }
@@ -75,13 +74,9 @@ public class UserServiceImpl implements UserService{
     }
 
     private Role checkRoleExist(){
-        Random random = new Random();
-        String[] all = {"ROLE_ADMIN","ROLE_USER"};
-        int randomIndex = random.nextInt(all.length);
-        String roleName = all[randomIndex];
         Role role = new Role();
-        role.setName(roleName);
-        System.out.println("has this role "+roleName);
+        role.setName("ROLE_USER");
+//        System.out.println("has this role "role.setName("ROLE_USER"));
         return roleRepository.save(role);
     }
 

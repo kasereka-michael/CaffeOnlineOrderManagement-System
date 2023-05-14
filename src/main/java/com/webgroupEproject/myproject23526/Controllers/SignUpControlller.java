@@ -173,8 +173,19 @@ public class SignUpControlller {
                 .collect(Collectors.toSet());
             System.out.println("roles"+ roles +" user email "+ user.getEmail()+" the password "+ user.getPassword());
             System.out.println("role of user "+ roles);
+            UserClient userClient = new UserClient();
+            //getting the user email
+            userClient.setEmail(email);
+            //extracting the name from the email
+            String[] parts = email.split("@");
+           // Extract the name from the first part of the email address
+            String name = parts[0];
+           // Remove any numbers or special characters from the name
+            name = name.replaceAll("[^a-zA-Z\\s]", "");
+            //getting it now... i just populate these two field to alley user the task of filling out all the fields
+            userClient.setFullname(name.trim());
         if (requestUrl.equals("/log") && roles.contains("ROLE_USER")) {
-            model.addAttribute("client", new UserClient());
+            model.addAttribute("client", userClient);
             model.addAttribute("Product", new RecServices());
             model.addAttribute("displayclient", "block");
             model.addAttribute("displayProduct", "none");
@@ -184,12 +195,12 @@ public class SignUpControlller {
             model.addAttribute("url", "RecordProds");
             return "RecordProduct";
 
-        } else if(requestUrl.equals("/log") && roles.contains("ROLE_ADMIN")){
+        }else if(requestUrl.equals("/log") && roles.contains("ROLE_ADMIN")){
 
             model.addAttribute("client", clientService.getALLClient());
             model.addAttribute("prods",  productService.getALLProduct());
             model.addAttribute("comments", commentService.getALLComments());
-            model.addAttribute("admin",email.toUpperCase().charAt(0));
+            model.addAttribute("admin",email.toUpperCase().charAt(0)); // getting the first character of user name to be displayed so you can know you is actually logged in
             model.addAttribute("ncomment", commentService.getNumberofComment());
             return "dashboard";
         }

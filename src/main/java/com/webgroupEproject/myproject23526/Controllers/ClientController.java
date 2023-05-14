@@ -98,6 +98,7 @@ public class ClientController {
         model.addAttribute("client", clientService.getALLClient());
         model.addAttribute("prods",  productService.getALLProduct());
         model.addAttribute("comments", commentService.getALLComments());
+          model.addAttribute("ncomment", commentService.getNumberofComment());
         return "dashboard";
      }
 
@@ -143,7 +144,7 @@ public class ClientController {
             return "search-results";
         }
 
-        model.addAttribute("search", "Result");
+        model.addAttribute("search", "Result of '" +query+"'");
         model.addAttribute("products", filteredProducts);
 System.out.println("the actual size of the list "+ filteredProducts.size());
         return "search-results";
