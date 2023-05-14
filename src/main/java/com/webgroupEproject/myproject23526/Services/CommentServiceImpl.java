@@ -23,4 +23,9 @@ public class CommentServiceImpl implements CommentService{
 
         return commentRepository.findAll();
     }
+
+    @Override
+    public int getNumberofComment() {
+        return commentRepository.countAll();
+    }
 }

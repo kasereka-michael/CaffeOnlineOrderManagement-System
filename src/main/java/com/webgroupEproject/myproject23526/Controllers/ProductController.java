@@ -202,6 +202,7 @@ public class ProductController {
         model.addAttribute("client", clientService.getALLClient());
         model.addAttribute("prods",  productService.getALLProduct());
         model.addAttribute("comments", commentService.getALLComments());
+        model.addAttribute("ncomment", commentService.getNumberofComment());
         return "dashboard";
 
     }

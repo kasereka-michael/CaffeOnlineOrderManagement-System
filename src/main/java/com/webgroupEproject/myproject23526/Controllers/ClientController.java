@@ -1,6 +1,7 @@
 package com.webgroupEproject.myproject23526.Controllers;
 
 
+import com.webgroupEproject.myproject23526.Dto.UserDto;
 import jakarta.mail.Authenticator;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
@@ -18,6 +19,7 @@ import com.webgroupEproject.myproject23526.Model.UserClient;
 import com.webgroupEproject.myproject23526.Services.ClientService;
 import com.webgroupEproject.myproject23526.Services.ProductService;
 import com.webgroupEproject.myproject23526.Services.CommentService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -61,15 +63,18 @@ public class ClientController {
     public String SaveClientData(@Valid @ModelAttribute("client") UserClient userclient, BindingResult theBindingResult, Model model, @ModelAttribute("message") String message) throws Exception{
         if(theBindingResult.hasErrors()){
             model.addAttribute("client", userclient);
-            model.addAttribute("comments",new Comment());
+            model.addAttribute("Product", new RecServices());
             model.addAttribute("comment", "Oops!!\nWe faced an error");
             model.addAttribute("displayclient", "block");
             model.addAttribute("displayProduct", "none");
             model.addAttribute("url", "RecordProds");
+
+            System.out.print("here i am form order made the error :::::: " + theBindingResult.getAllErrors());
             return "RecordProduct";
         } else{
             userclient.setDate(new Date());
             clientService.saveClientOrder(userclient);
+
             SendEmail(userclient.getEmail(),userclient.getFullname(),userclient.getAddress());
             model.addAttribute("client", new UserClient()); // Create new instance of UserClient
             model.addAttribute("Product", new RecServices()); // Create new instance of Comment
@@ -97,17 +102,26 @@ public class ClientController {
      }
 
     @RequestMapping("/makeorder")
-    public String DirectToorder(Model model){
-        model.addAttribute("client", new UserClient());
-        model.addAttribute("Product", new RecServices());
-        model.addAttribute("displayclient", "block");
-        model.addAttribute("displayProduct", "none");
-        model.addAttribute("bkh", "block");
-        model.addAttribute("bkd", "none");
-        model.addAttribute("comment", "Welcome!!!");
-        model.addAttribute("url", "RecordProds");
-        return "RecordProduct";
+    public String DirectToorder(Model model, HttpServletRequest request){
+        UserDto user = new UserDto();
+            model.addAttribute("signup", user);
+            model.addAttribute("logging", new UserDto());
+            return "LogingSignUpPage";
+
     }
+
+//    @RequestMapping("/makeorder")
+//    public String DirectToorder(Model model){
+//        model.addAttribute("client", new UserClient());
+//        model.addAttribute("Product", new RecServices());
+//        model.addAttribute("displayclient", "block");
+//        model.addAttribute("displayProduct", "none");
+//        model.addAttribute("bkh", "block");
+//        model.addAttribute("bkd", "none");
+//        model.addAttribute("comment", "Welcome!!!");
+//        model.addAttribute("url", "RecordProds");
+//        return "RecordProduct";
+//    }
 
     @GetMapping("/searching")
     public String searchProducts(Model model, @RequestParam("query") String query) {

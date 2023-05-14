@@ -8,4 +8,6 @@ public interface CommentService {
     void saveClientcomment(Comment comment);
     List<Comment> getALLComments();
 
+    int getNumberofComment();
+
 }

@@ -9,6 +9,7 @@ import com.webgroupEproject.myproject23526.Services.CommentService;
 
 
 import com.webgroupEproject.myproject23526.Services.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,11 +57,9 @@ public class SignUpControlller {
 
     @GetMapping("/")
     public String AuthController(Model model){
-        UserDto user = new UserDto();
-        model.addAttribute("signup", user);
-        model.addAttribute("logging", new UserDto());
-       return "LogingSignUpPage";
-
+        model.addAttribute("comments",new Comment());
+        System.out.println("here in home");
+        return "homepage";
     }
 
 
@@ -93,12 +92,14 @@ public class SignUpControlller {
                 model.addAttribute("feedback",
                         "Oops we faced an error");
                 UserDto user = new UserDto();
+
                 model.addAttribute("signup", user);
                 model.addAttribute("logging", new UserDto());
                 return "LogingSignUpPage";
             }
 
             if(result.hasErrors()){
+
                 model.addAttribute("signup", userDto);
                 model.addAttribute("logging", new UserDto());
                 return "LogingSignUpPage";
@@ -140,8 +141,8 @@ public class SignUpControlller {
 //        return "LogingSignUpPage";
 //    }
 
-    @PostMapping("/log")
-    public String processLogin(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session,Model model) {
+    @PostMapping(value ="/log")
+    public String processLogin(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session, HttpServletRequest request, Model model) {
         User user = userService.findUserByEmail(email);
         if(email == null && password == null){
             model.addAttribute("feedback", "please fields are required");
@@ -165,25 +166,40 @@ public class SignUpControlller {
 
         // Authentication succe model.addAttribute("signup", new UserDto());ssful
         session.setAttribute("user", user);
+        String requestUrl = request.getRequestURI();
 
         Set<String> roles = user.getRoles().stream()
                 .map(Role::getName)
                 .collect(Collectors.toSet());
             System.out.println("roles"+ roles +" user email "+ user.getEmail()+" the password "+ user.getPassword());
             System.out.println("role of user "+ roles);
-        if (roles.contains("ROLE_ADMIN")) {
-            System.out.println("here in admin");
+        if (requestUrl.equals("/log") && roles.contains("ROLE_USER")) {
+            model.addAttribute("client", new UserClient());
+            model.addAttribute("Product", new RecServices());
+            model.addAttribute("displayclient", "block");
+            model.addAttribute("displayProduct", "none");
+            model.addAttribute("bkh", "block");
+            model.addAttribute("bkd", "none");
+            model.addAttribute("comment", "Welcome!!!");
+            model.addAttribute("url", "RecordProds");
+            return "RecordProduct";
+
+        } else if(requestUrl.equals("/log") && roles.contains("ROLE_ADMIN")){
+
             model.addAttribute("client", clientService.getALLClient());
             model.addAttribute("prods",  productService.getALLProduct());
             model.addAttribute("comments", commentService.getALLComments());
+            model.addAttribute("admin",email.toUpperCase().charAt(0));
+            model.addAttribute("ncomment", commentService.getNumberofComment());
             return "dashboard";
-        } else {
-            model.addAttribute("comments",new Comment());
-            System.out.println("here in home");
-            return "homepage";
         }
-
+        System.out.println(requestUrl);
+        model.addAttribute("feedback", "Oops!!! we faced a problem");
+        model.addAttribute("logging", new UserDto());
+        model.addAttribute("signup", new UserDto());
+        return "LogingSignUpPage";
     }
+
 
 
         @GetMapping("logout")

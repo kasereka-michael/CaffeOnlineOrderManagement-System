@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="login">
-                    <form action="log" th:action="@{/log}" th:object="${logging}" method="post">
+                    <form action="log" th:object="${logging}" method="post">
                         <label for="chk" aria-hidden="true">Login</label>
                         <input type="email" th:field="*{email}"  name="email" class="input-field four" placeholder="User email" required/>
                         <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>

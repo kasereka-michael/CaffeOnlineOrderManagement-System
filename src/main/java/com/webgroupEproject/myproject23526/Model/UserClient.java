@@ -31,7 +31,6 @@ public class UserClient implements Serializable {
     @NotNull(message = "Phone number is required")
     @Size(min = 10, max = 10, message = "Phone number should be 10 digits")
     private String phonenumber;
-    @NotNull(message = "required")
     private Date date;
 
     public UserClient() {

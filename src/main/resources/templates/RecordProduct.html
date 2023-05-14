@@ -159,22 +159,12 @@ function validateInput(inputField) {
 
   // Check if the input value is valid
   if (inputValue.length < 10) {
-    document.getElementById('errorSpan').innerHTML = 'Input must be 9 digits';
+    document.getElementById('errorSpan').innerHTML = 'Input must be 10 digits';
   } else {
     document.getElementById('errorSpan').innerHTML = '';
   }
 }
 
-
-  document.getElementById('photo').addEventListener('change', function() {
-    var file = this.files[0];
-    if (file && file.size > 10 * 1024 * 1024) {
-      document.getElementById('photo-error').textContent = 'The photo must be under 10MB.';
-      this.value = null;
-    } else {
-      document.getElementById('photo-error').textContent = '';
-    }
-  });
 
 </script>
 </body>

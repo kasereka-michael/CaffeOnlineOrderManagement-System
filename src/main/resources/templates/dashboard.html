@@ -87,7 +87,7 @@
       </button>
     </form>
     <div class="admin-profile">
-      <span class="greeting">Hello [[${admin}]]</span>
+      <span class="greeting" th:text="${admin}"></span>
       <div class="notifications">
         <span class="badge" th:text="${ncomment}"></span>
         <svg viewBox="50 50 200 200">
@@ -136,8 +136,7 @@
 
     <div class="chart">
       <h6 style="text-align: left;">Repport</h6>
-<!--      <div id="piechart" style="width: 100%; height: 100%;"></div>-->
-      <div id="chart_div" style="width: 100%; height: 100%;"></div>
+      <div id="piechart" style="width: 100%; height: 100%;"></div>
     </div>
 
     <div class="commentor">
@@ -179,7 +178,7 @@
               <th>Quantity</th>
               <th>Current Status</th>
               <th>Record's Date</th>
-              <th>Comment ON</th>
+              <th >Comment ON</th>
               <th>Action</th>
             </tr>
             </thead>
@@ -190,10 +189,9 @@
               <td th:text="${products.prodquantity}"></td>
               <td th:text="${products.currentStatus}"></td>
               <td th:text="${products.recdate}"></td>
-              <td style="white-space: nowrap;" th:text="${products.prodcomment}"></td>
+              <td th:text="${products.prodcomment}"></td>
               <td style="width: 200px; display: flex; gap: 10px;">
-<!--                <a th:href="@{/EditProduct/{id}(id=${products.id})}" class="edit">Update</a>-->
-<!--                <a th:href="@{/DeleteProduct/{id}(id=${products.id})}" class="delete">Delete</a>-->
+
                  <form th:action="EditProduct" method="get">
                     <input type="hidden" name="id" th:value="${products.id}" />
                     <button class="edit" type="submit">Edit</button>
@@ -221,29 +219,6 @@
     setInterval(updatePage, 100000);
 
 
-     google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-  var data = google.visualization.arrayToDataTable([    ['Orders', 'Comment', 'Income'],
-    ['2013',  1000,      400],
-    ['2014',  1170,      460],
-    ['2015',  660,       1120],
-    ['2016',  1030,      540]
-  ]);
-
-  var options = {
-    title: '',
-    hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-    vAxis: {minValue: 0},
-    series: {
-      0: {borderWidth: 2}
-    }
-  };
-
-  var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-  chart.draw(data, options);
-}
                   function exportTableexcel() {
                      var table = document.querySelector(".redTable");
 
@@ -325,6 +300,34 @@ function validateSize() {
     return true;
 }
 
+    </script>
+
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+
+
+        var data = google.visualization.arrayToDataTable([
+          ['Object', 'Quantity'],
+          ['Visitor',    18],
+          ['Order',     10],
+          ['Product available',  89],
+          ['Updated Order', 25],
+          ['Comment',  45]
+        ]);
+
+        var options = {
+          title:  ''
+
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
     </script>
 </body>
 </html>
